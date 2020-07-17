@@ -10,7 +10,7 @@ containerTemplate(name: 'npm', image: 'node:lts', command: 'cat', ttyEnabled: tr
 //containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
 containerTemplate(name: "scanner", image: "newtmitch/sonar-scanner", ttyEnabled: true, command: "cat"),
 containerTemplate(name: 'docker', image: 'docker:dind', command: 'dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay', ttyEnabled: true, alwaysPullImage: true, privileged: true),
-containerTemplate(name: 'kubectl', image: 'roffe/kubectl', command: 'cat', ttyEnabled: true)*/
+containerTemplate(name: 'kubectl', image: 'roffe/kubectl', command: 'cat', ttyEnabled: true)
 ]) {
   node(label) {
 
@@ -20,7 +20,7 @@ containerTemplate(name: 'kubectl', image: 'roffe/kubectl', command: 'cat', ttyEn
 
 		// #1 Github 소스 가져오기
 		stage('Get Source'){
-			git credentialsId: '5f896d5005820e1a5fcbf306179d67db0129cef0', url: 'https://github.com/IBMCloudClass-lab11/cicd-front', branch: 'master'
+			git credentialsId: 'github-lab11', url: 'https://github.com/IBMCloudClass-lab11/cicd-front', branch: 'master'
 		}
 		
 		// #2 Properties 파일 읽기		
